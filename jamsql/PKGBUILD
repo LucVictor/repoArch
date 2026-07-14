@@ -1,0 +1,25 @@
+pkgname=jamsql
+pkgver=latest
+pkgrel=1
+pkgdesc="JamSQL Studio - Modern cross-platform SQL client"
+arch=('x86_64')
+url="https://www.jamsql.com/"
+license=('MIT')
+
+source=(
+    "JamSQLStudio-${pkgver}-linux-x64.pacman::https://downloads.jamsql.com/downloads/JamSQLStudio-${pkgver}-linux-x64.pacman"
+)
+
+sha256sums=('SKIP')
+
+options=(
+    '!strip'
+)
+
+package() {
+    bsdtar -xf "${srcdir}/JamSQLStudio-${pkgver}-linux-x64.pacman" -C "${pkgdir}"
+    rm -f \
+        "${pkgdir}/.PKGINFO" \
+        "${pkgdir}/.MTREE" \
+        "${pkgdir}/.INSTALL"
+}
